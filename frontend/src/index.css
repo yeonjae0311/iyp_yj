@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;400;600&display=swap');
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  color: #000;
+  outline: none;
+}
+html {
+  font-size: 13px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+dl,
+dt,
+dd,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+/* 공통 여백 */
+.mt5 {
+  margin-top: 5px;
+}
+.mb5 {
+  margin-bottom: 5px;
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+.mb10 {
+  margin-bottom: 10px;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  padding-top: 88px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
