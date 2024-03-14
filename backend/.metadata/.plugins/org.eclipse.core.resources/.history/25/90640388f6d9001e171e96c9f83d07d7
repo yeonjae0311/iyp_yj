@@ -1,0 +1,21 @@
+package com.example.iyp.dao;
+
+import org.springframework.stereotype.Repository;
+
+import com.example.iyp.dto.UserDTO;
+import com.example.iyp.mapper.UserMapper;
+
+import lombok.RequiredArgsConstructor;
+
+@Repository
+@RequiredArgsConstructor
+public class UserDAO {
+	
+	private final UserMapper userMapper;
+	
+	// 로그인
+	public UserDTO login(String id) {
+		return userMapper.login(id);
+	}
+
+}

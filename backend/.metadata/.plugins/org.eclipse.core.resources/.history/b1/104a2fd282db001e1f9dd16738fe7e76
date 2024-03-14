@@ -1,0 +1,63 @@
+package com.example.iyp.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.iyp.dto.UserDTO;
+import com.example.iyp.service.UserService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@RequestMapping("/api/member")
+@RestController
+public class UserController {
+	
+	@Autowired
+	UserService userService;
+	
+	@PostMapping("/login")
+	public String Login(@RequestBody String data) throws JsonProcessingException {
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		UserDTO login_info = null;
+		try {
+			login_info = objectMapper.readValue(data, UserDTO.class);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		
+		String id = login_info.getId();
+		String password = login_info.getPassword();
+		
+		String checkPw = userService.login(id);
+	
+		if(password.equals(checkPw)) {
+			
+			UserDTO userDTO = userService.select_user(id);
+			
+			String user_info = objectMapper.writeValueAsString(userDTO);
+			
+			return user_info;
+		} else {
+			return "fail";
+		}   
+	}
+	
+	@PostMapping("/join")
+	public String join(@RequestBody String data) throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper();
+		UserDTO userDTO = objectMapper.readValue(data, UserDTO.class);
+		
+		
+		
+		
+		return "success";
+	}
+	
+}

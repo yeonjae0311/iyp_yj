@@ -1,9 +1,10 @@
 import React from 'react';
+import '../../styles/outlines/Footer.scss';
 
 const Footer = () => {
   return (
     <footer>
-      <div>cyj's project</div>
+      <div className="footer"></div>
     </footer>
   );
 };

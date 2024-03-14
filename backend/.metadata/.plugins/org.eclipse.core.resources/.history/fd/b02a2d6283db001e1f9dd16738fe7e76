@@ -1,0 +1,22 @@
+package com.example.iyp.controller;
+
+import java.util.regex.Pattern;
+
+public class JoinValidator {
+	
+	public boolean idValid(String id) {
+		return Pattern.matches("^[a-zA-Z]*$", id);
+	}
+	
+	public boolean emailValid(String email) {
+		return Pattern.matches("^[a-z0-9A-Z._-]*@[a-z0-9A-Z]*.[a-zA-Z.]*$", email);
+	}
+	
+	public boolean pwValid(String pw) {
+		return Pattern.matches("/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/", pw);
+	}
+	
+	public boolean nameValid(String name) {
+		return Pattern.matches("[a-zA-Z0-9]*$", name);
+	}
+}

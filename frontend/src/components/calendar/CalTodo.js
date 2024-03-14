@@ -9,6 +9,7 @@ const CalTodo = ({ currentMonth }) => {
           {format(currentMonth, 'yyyy')}.{format(currentMonth, 'MM')}
         </SubTitle>
         <MiniTitle>To-do</MiniTitle>
+        <div>리스트</div>
       </div>
     </div>
   );

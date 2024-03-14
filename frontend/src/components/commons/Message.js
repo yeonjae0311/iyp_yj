@@ -5,7 +5,7 @@ const Message = styled.div`
     text-align: center;
     color: ${({ fcolor }) => fcolor || '#6D6D6D'};
     font-size: 11px;
-    margin: 5px 0;
+
 `;
 
 export default Message;

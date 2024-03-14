@@ -1,0 +1,13 @@
+package com.example.iyp.dao;
+
+import org.springframework.stereotype.Repository;
+
+import com.example.iyp.mapper.UserMapper;
+
+import lombok.RequiredArgsConstructor;
+
+@Repository
+@RequiredArgsConstructor
+public class CalDAO {
+
+}

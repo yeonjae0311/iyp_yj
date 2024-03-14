@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { UserProvider } from './modules/user';
+import { UserProvider } from './modules/UserContext.js';
 import ErrorPage from './pages/commons/ErrorPage';
 import './i18n.js';
 

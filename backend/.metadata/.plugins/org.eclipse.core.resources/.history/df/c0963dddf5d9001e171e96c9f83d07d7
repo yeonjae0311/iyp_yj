@@ -1,0 +1,15 @@
+package com.example.iyp.dao;
+
+import com.example.iyp.dto.UserDTO;
+import com.example.iyp.mapper.UserMapper;
+
+public class UserDAO {
+	
+	private final UserMapper userMapper;
+	
+	// 로그인
+	public UserDTO login(String id) {
+		return userMapper.login(id);
+	}
+
+}

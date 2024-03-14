@@ -1,116 +1,171 @@
 import styled from 'styled-components';
 import { FormBox } from '../commons/BoxStyle';
-import { MiniTitle, SubTitle } from '../commons/TitleStyle';
+import { MiniTitle } from '../commons/TitleStyle';
+import { TextArea, TitleInput } from '../commons/InputStyle';
+
 import { RxCross2 } from 'react-icons/rx';
 import { format } from 'date-fns';
 import { CirclePicker } from 'react-color';
 import { FiLink } from 'react-icons/fi';
 import { FaRegShareFromSquare } from 'react-icons/fa6';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 
-const CalModal = ({ selectedDate, closeModal }) => {
+const FormBoxModal = styled(FormBox)`
+  margin: auto;
+  background-color: white;
+  justify-content: normal;
+  align-items: normal;
+
+  .btnBar {
+    display: flex;
+    width: 110px;
+
+    .editBtn {
+      display: flex;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-left: 10px;
+    }
+
+    .editBtn:hover {
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+      color: gray;
+    }
+
+    .editBtn.submitBtn {
+      border: none;
+      background-color: white;
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 45px;
+    align-items: baseline;
+
+    svg {
+      width: 35px;
+      height: 35px;
+      margin-right: 15px;
+    }
+  }
+
+  svg:hover {
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+  }
+
+  .header {
+    display: flex;
+
+    .crossBtn {
+      margin-right: 30px;
+    }
+  }
+  .time {
+    padding: 10px 0 0 40px;
+    font-size: 20px;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px 40px;
+    .detail {
+      margin-bottom: 10px;
+    }
+  }
+`;
+
+const ModalBackdrop = styled.div`
+  z-index: 1;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`;
+
+const CalModal = ({
+  selectedDate,
+  closeModal,
+  onChange,
+  form,
+  onSubmit,
+  handleColorPicker,
+  setFormColor,
+}) => {
   const { t } = useTranslation();
+
+  const [isEdit, setIsEdit] = useState(false);
 
   const date = format(selectedDate, 'yyyy/MM/dd');
 
-  const FormBoxModal = styled(FormBox)`
-    margin: auto;
-    background-color: white;
-    justify-content: normal;
-    align-items: normal;
-
-    .footer {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 45px;
-      align-items: baseline;
-      svg {
-        width: 35px;
-        height: 35px;
-        margin-right: 15px;
-      }
-      span {
-        font-size: 1.4rem;
-        font-weight: 600;
-      }
-    }
-    :hover svg {
-      cursor: pointer;
-      transition: 0.2s ease-in-out;
-    }
-    .text {
-      display: flex;
-      margin-top: 10px;
-      margin-bottom: 20px;
-      justify-content: space-between;
-      width: 430px;
-    }
-
-    .header {
-      display: flex;
-
-      h2 {
-        font-size: 2.5rem;
-        padding: 40px 40px 5px;
-      }
-      .crossBtn {
-        width: 33px;
-        height: 33px;
-        margin-right: 40px;
-      }
-    }
-    .time {
-      padding: 0 0 0 40px;
-      font-size: 20px;
-    }
-
-    .content {
-      display: flex;
-      flex-direction: column;
-      padding: 20px 40px;
-      .detail {
-        margin-bottom: 120px;
-      }
-    }
-  `;
-
-  const ModalBackdrop = styled.div`
-    z-index: 1;
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.4);
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  `;
+  const editToggle = (e) => {
+    setIsEdit(!isEdit);
+  };
 
   return (
     <div>
       <ModalBackdrop>
-        <FormBoxModal width="537px" height="650px">
+        <FormBoxModal width="537px" height="650px" onSubmit={onSubmit}>
           <div className="header">
-            <SubTitle margin_bottom={'0'}>Title</SubTitle>
-            <RxCross2 className="crossBtn" onClick={closeModal} />
+            <TitleInput
+              margin_bottom={'0'}
+              placeholder={t(`제목 입력`)}
+              onChange={onChange}
+              name="s_title"
+              readOnly={!isEdit}
+              value={form.s_title}
+              $edit={isEdit}
+            />
+            <RxCross2 className="crossBtn" size="35" onClick={closeModal} />
           </div>
-          <div className="time">{date}</div>
+          <div className="time">
+            {date}
+            <input type="hidden" value={date} name="s_date" />
+          </div>
           <div className="content">
-            <div className="detail">
-              <MiniTitle>{t(`상세내용`)}</MiniTitle>
-              <span>교정치료를 위해 치과 방문</span>
+            <div>
+              <MiniTitle>{t(`상세내용`)}</MiniTitle>{' '}
+              <TextArea
+                name="s_content"
+                placeholder={t(`ex) 3시 서울00치과에서 교정 예약 되어있음`)}
+                readOnly={!isEdit}
+                onChange={onChange}
+                value={form.s_content}
+                $edit={isEdit}
+              />
             </div>
             <div className="deco">
               <MiniTitle>{t(`색상`)}</MiniTitle>
-              <CirclePicker circleSize={25} />
+              <CirclePicker
+                circleSize={25}
+                name="s_color"
+                value={form.s_color}
+                onChange={handleColorPicker}
+              />
             </div>
             <div className="footer">
               <div>
                 <FiLink />
                 <FaRegShareFromSquare />
               </div>
-              <span>{t(`수정하기`)}</span>
+              <div className="btnBar">
+                <div className="editBtn" onClick={editToggle}>
+                  {t(`수정`)}
+                </div>
+                <button className="editBtn submitBtn" type="submit">
+                  {t(`등록`)}
+                </button>
+              </div>
             </div>
           </div>
         </FormBoxModal>

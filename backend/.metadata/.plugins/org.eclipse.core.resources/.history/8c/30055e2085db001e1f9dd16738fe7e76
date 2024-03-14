@@ -1,0 +1,38 @@
+package com.example.iyp.controller;
+
+import java.util.regex.Pattern;
+
+import com.example.iyp.dto.UserDTO;
+
+public class JoinValidator {
+	
+	public boolean idValid(String id) {
+		return Pattern.matches("^[a-zA-Z]*$", id);
+	}
+	
+	public boolean emailValid(String email) {
+		return Pattern.matches("^[a-z0-9A-Z._-]*@[a-z0-9A-Z]*.[a-zA-Z.]*$", email);
+	}
+	
+	public boolean pwValid(String pw) {
+		return Pattern.matches("/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/", pw);
+	}
+	
+	public boolean nameValid(String name) {
+		return Pattern.matches("[a-zA-Z0-9]*$", name);
+	}
+	
+	public boolean Valid(UserDTO userDTO) {
+		boolean id = idValid(userDTO.getId());
+		boolean email = emailValid(userDTO.getEmail());
+		boolean name = nameValid(userDTO.getName());
+		boolean pw = pwValid(userDTO.getPassword());
+		
+		if(id && email && name && pw ) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+}

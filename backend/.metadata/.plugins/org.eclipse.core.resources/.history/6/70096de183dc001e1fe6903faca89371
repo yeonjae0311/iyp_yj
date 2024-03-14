@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.iyp.mapper.CalMapper">
+
+	<insert id="insert" parameterType="calDTO">
+		insert into schedule values
+		#{u_idx},
+		(select nextval('seq_member') from dual), 
+		#{s_date}, 
+		#{s_title}, 
+		#{s_content}, 
+		#{s_color}
+	</insert>
+	
+</mapper>

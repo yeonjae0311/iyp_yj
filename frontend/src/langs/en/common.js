@@ -14,6 +14,8 @@ const common = {
   상세내용: 'detail',
   색상: 'color',
   수정하기: 'edit',
+  로그아웃: ' SIGN OUT',
+  설정: 'SETTING',
 };
 
 export default common;

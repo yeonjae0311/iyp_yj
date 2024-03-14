@@ -1,0 +1,17 @@
+package com.example.iyp.controller;
+
+import java.util.regex.Pattern;
+
+import com.example.iyp.dto.UserDTO;
+
+public class JoinValidator {
+	
+	public boolean Valid(UserDTO userDTO) {
+		
+		String id = userDTO.getId();
+		Pattern.matches("^[0-9]*$", id);
+
+		
+		return true;
+	}
+}

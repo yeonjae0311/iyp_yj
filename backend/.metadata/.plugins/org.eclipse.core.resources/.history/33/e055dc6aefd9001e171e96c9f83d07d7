@@ -1,0 +1,5 @@
+package com.example.iyp.vo;
+
+public class UserVO {
+
+}

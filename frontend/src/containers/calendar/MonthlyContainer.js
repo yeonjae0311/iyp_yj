@@ -2,14 +2,20 @@ import { useState } from 'react';
 import CalHeader from '../../components/calendar/CalHeader';
 import CalBody from '../../components/calendar/CalBody';
 import CalDays from '../../components/calendar/CalDays';
-import { subMonths, addMonths } from 'date-fns';
+import { subMonths, addMonths, format } from 'date-fns';
 import CalTodo from '../../components/calendar/CalTodo';
 import ModalContainer from './ModalContainer';
+import { apiUpdateSchedule } from '../../api/cal';
 
 const MonthlyContainer = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isOpen, setIsOpen] = useState(false);
+  const [toDo, setTodo] = useState({
+    s_date: '',
+    s_title: '',
+    s_color: '',
+  });
 
   const prevMonth = () => {
     setCurrentMonth(subMonths(currentMonth, 1));
@@ -24,10 +30,16 @@ const MonthlyContainer = () => {
     setIsOpen(true);
   };
 
-  const closeModal = () => {
+  const closeModal = (e) => {
+    e.stopPropagation();
     setIsOpen(false);
   };
 
+  const date = format(currentMonth, 'yyyy-MM');
+
+  /*apiUpdateSchedule(date).then((todo) => {
+    setTodo(todo);
+  });*/
   return (
     <div className="monthly">
       <CalTodo currentMonth={currentMonth} />

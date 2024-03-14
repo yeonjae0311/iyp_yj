@@ -1,0 +1,5 @@
+package com.example.iyp.controller;
+
+public class JoinValidator {
+
+}

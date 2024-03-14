@@ -1,0 +1,13 @@
+package com.example.iyp.mapper;
+
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface UserMapper {
+	
+	// 회원 가입
+	public int join();
+	
+	// 로그인
+	public String login(String id);
+}

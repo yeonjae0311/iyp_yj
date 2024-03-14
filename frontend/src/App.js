@@ -9,6 +9,7 @@ import Monthly from './pages/front/calendar/Monthly';
 import Weekly from './pages/front/calendar/Weekly';
 import NotFound from './pages/commons/NotFound';
 import { HelmetProvider } from 'react-helmet-async';
+import Settings from './pages/front/commons/Settings';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
             <Route index element={<Main />} />
             <Route path="/sign-in" element={<Login />} />
             <Route path="/join" element={<Join />} />
+            <Route path="/settings" element={<Settings />} />
             <Route path="/monthly" element={<Monthly />} />
             <Route path="/weekly" element={<Weekly />} />
           </Route>
