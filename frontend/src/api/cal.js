@@ -13,9 +13,9 @@ export const apiSchedule = (formData) =>
       .catch((err) => reject(err));
   });
 
-export const apiUpdateSchedule = (date) =>
+export const apiUpdateSchedule = (data) =>
   new Promise((resolve, reject) => {
-    apiRequest('/cal/todo', 'GET', date)
+    apiRequest('api/cal/todo', 'POST', data)
       .then((res) => {
         resolve(res.data);
       })

@@ -4,9 +4,10 @@ import { SubTitle } from '../../components/commons/TitleStyle';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { formattedDate, formattedDateEn } from '../../modules/date';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import UserContext from '../../modules/UserContext';
+import { apiMemberInfo } from '../../api/member';
 
 const MainOn = () => {
   const { t } = useTranslation();
@@ -27,12 +28,33 @@ const MainOn = () => {
 
   const {
     state: { userInfo },
+    actions: { setUserInfo },
   } = userContext;
 
   const handleClick = (e) => {
     const { name } = e.target;
     navigate(name);
   };
+
+  const data = {
+    id: localStorage.getItem('id'),
+    token: localStorage.getItem('iyp_access_token'),
+  };
+
+  const profile = (data) => {
+    apiMemberInfo(data)
+      .then((profile) => {
+        if (profile !== null) {
+          setUserInfo(profile.data.name);
+          console.log(profile);
+        }
+      })
+      .catch((err) => {
+        alert('불러오기 실패');
+      });
+  };
+
+  useEffect(() => profile(), []);
 
   return (
     <>
@@ -42,7 +64,7 @@ const MainOn = () => {
       <MainDiv>
         <SubTitle size="2rem" align="center">
           {t(`인사말로그인후`, {
-            userNm: userInfo.name,
+            userNm: userInfo,
             formattedDateEn: formattedDateEn,
             formattedDate: formattedDate,
           })}

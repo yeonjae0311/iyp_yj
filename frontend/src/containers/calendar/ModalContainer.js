@@ -35,7 +35,6 @@ const ModalContainer = ({ selectedDate, closeModal }) => {
   const handleColorPicker = (color, event) => {
     event.preventDefault();
     setForm({ ...form, s_color: color.hex });
-    console.log(form);
   };
 
   const onSubmit = useCallback(

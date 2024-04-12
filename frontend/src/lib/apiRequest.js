@@ -1,6 +1,8 @@
 import axios from 'axios';
 
 export default function apiRequest(url, method = 'GET', data, headers = {}) {
+  axios.defaults.withCredentials = true;
+
   if (!url || !url.trim()) return;
 
   if (!/^http[s]?:/i.test(url)) {

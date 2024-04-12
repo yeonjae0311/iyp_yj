@@ -1,10 +1,19 @@
-server:
-  port: 10000
-  
-#JDBC dataSource
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    jdbc-url: jdbc:mysql://localhost:3306/iyp?serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/iyp?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: yeon
     password: 1111
+  jpa:
+    database: mysql
+
+      
+server:
+  port: 10000
+    
+jwt:
+  header: "Authorization"
+  prefix: "Bearer "
+  secret: 64uk7Iuc66eM65Ok6riw7Iuc64+E7KSR7J2067KI7JeQ64qU6ryt7ISx6rO17ZWY6rOg7Iu27Ja07JqU
+  tokenExpirationTime: 18000
+  

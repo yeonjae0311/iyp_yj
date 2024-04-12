@@ -11,6 +11,7 @@ const LoginContainer = () => {
     id: '',
     password: '',
   });
+
   const [errors, setErrors] = useState({});
 
   const { t } = useTranslation();
@@ -61,23 +62,27 @@ const LoginContainer = () => {
       } = userContext;
 
       apiLogin(form)
-        .then((userInfo) => {
+        .then((token) => {
+          console.log(token.data);
           let isLogin = false;
 
-          if (userInfo) {
-            isLogin = true;
+          if (token.data.id !== form.id) {
+            alert(token.data);
+            return;
           }
+          console.log('[Login.js] login() success :D');
+          alert(token.data.id + '님, 성공적으로 로그인 되었습니다 🔐');
+          isLogin = true;
 
           setIsLogin(isLogin);
-          setUserInfo(userInfo);
-
-          sessionStorage.setItem('id', userInfo.id);
-          sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
+          localStorage.setItem('Id', token.data.id);
+          localStorage.setItem('iyp_access_token', token.data.token);
 
           if (isLogin === true) {
             navigate('/');
           }
         })
+
         .catch((err) => {
           alert('로그인 실패');
           _errors.global = _errors.global || [];

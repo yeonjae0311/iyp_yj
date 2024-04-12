@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import React from 'react';
+import { check } from '../../api/member';
 
 const MainOut = ({ setIsLogin, setUserInfo }) => {
   const { t } = useTranslation();
@@ -20,6 +21,10 @@ const MainOut = ({ setIsLogin, setUserInfo }) => {
       margin-top: 140px;
     }
   `;
+
+  const cookieTestClick = () => {
+    check().then((res) => console.log(res));
+  };
 
   const handleClick = (e) => {
     const { name } = e.target;
@@ -54,6 +59,7 @@ const MainOut = ({ setIsLogin, setUserInfo }) => {
           >
             {t('회원가입')}
           </BigButton>
+          <BigButton onClick={cookieTestClick}>test</BigButton>
         </div>
       </MainDiv>
     </>

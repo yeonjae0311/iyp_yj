@@ -6,6 +6,7 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../i18n';
 import UserContext from '../../modules/UserContext';
+import { logout } from '../../api/member';
 
 const Header = () => {
   const { t } = useTranslation();
@@ -16,7 +17,8 @@ const Header = () => {
   } = userContext;
 
   const onClick = () => {
-    sessionStorage.removeItem('user');
+    logout(userContext);
+    localStorage.clear();
     setIsLogin(false);
     setUserInfo(null);
   };

@@ -1,7 +1,10 @@
 import { format } from 'date-fns';
 import { MiniTitle, SubTitle } from '../commons/TitleStyle';
 
-const CalTodo = ({ currentMonth }) => {
+const CalTodo = ({ currentMonth, toDo }) => {
+  if (!toDo) {
+    return null;
+  }
   return (
     <div className="monthly_todo">
       <div>
@@ -9,7 +12,9 @@ const CalTodo = ({ currentMonth }) => {
           {format(currentMonth, 'yyyy')}.{format(currentMonth, 'MM')}
         </SubTitle>
         <MiniTitle>To-do</MiniTitle>
-        <div>리스트</div>
+        <div>
+          <div key={toDo.sidx} content={toDo.content}></div>
+        </div>
       </div>
     </div>
   );
