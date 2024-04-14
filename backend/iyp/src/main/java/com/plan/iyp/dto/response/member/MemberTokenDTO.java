@@ -11,19 +11,19 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class MemberTokenDTO {
-    private String id;
+    private String email;
     private String token;
 
     @Builder
-    public MemberTokenDTO(String id, String token) {
-        this.id = id;
+    public MemberTokenDTO(String email, String token) {
+        this.email = email;
         this.token = token;
     }
 
     // Entity -> DTO
     public static MemberTokenDTO fromEntity(UserDetails member, String token) {
         return MemberTokenDTO.builder()
-                .id(member.getUsername())
+                .email(member.getUsername())
                 .token(token)
                 .build();
     }

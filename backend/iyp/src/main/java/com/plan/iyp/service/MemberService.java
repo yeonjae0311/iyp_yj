@@ -5,8 +5,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -40,13 +38,13 @@ public class MemberService {
     private final CustomUserDetailsService userDetailsService;
     private final JwtTokenUtil jwtTokenUtil;
 
-    public HttpStatus checkIdDuplicate(String Id) {
-        isExistUserId(Id);
+    public HttpStatus checkEmailDuplicate(String email) {
+        isExistUserEmail(email);
         return HttpStatus.OK;
     }
 
     public MemberResponseDTO register(MemberRegisterDTO registerDTO) {
-        isExistUserId(registerDTO.getId());
+        isExistUserEmail(registerDTO.getEmail());
         checkPassword(registerDTO.getPassword(), registerDTO.getPasswordCheck());
 
         // 패스워드 암호화
@@ -60,23 +58,23 @@ public class MemberService {
     }
     
     public MemberResponseDTO profile(Member member) {
-    	Member profileMember =  memberRepository.findById(member.getId()).orElseThrow(
-                () -> new ResourceNotFoundException("Member", "Member Id", member.getId())
+    	Member profileMember =  memberRepository.findByEmail(member.getEmail()).orElseThrow(
+                () -> new ResourceNotFoundException("Member", "Member Email", member.getEmail())
         );
     	return MemberResponseDTO.fromEntity(profileMember);
     }
 
 
     public MemberTokenDTO login(MemberLoginDTO loginDTO) {
-        authenticate(loginDTO.getId(), loginDTO.getPassword());
-        UserDetails userDetails = userDetailsService.loadUserByUsername(loginDTO.getId());
+        authenticate(loginDTO.getEmail(), loginDTO.getPassword());
+        UserDetails userDetails = userDetailsService.loadUserByUsername(loginDTO.getEmail());
         checkEncodePassword(loginDTO.getPassword(), userDetails.getPassword());
         String token = jwtTokenUtil.generateToken(userDetails);
         return MemberTokenDTO.fromEntity(userDetails, token);
     }
 
     public MemberResponseDTO check(Member member, String password) {
-        Member checkMember = (Member) userDetailsService.loadUserByUsername(member.getId());
+        Member checkMember = (Member) userDetailsService.loadUserByUsername(member.getEmail());
         checkEncodePassword(password, checkMember.getPassword());
         return MemberResponseDTO.fromEntity(checkMember);
     }
@@ -84,8 +82,8 @@ public class MemberService {
     public MemberResponseDTO update(Member member, MemberUpdateDTO updateDTO) {
         checkPassword(updateDTO.getPassword(), updateDTO.getPasswordCheck());
         String encodePwd = encoder.encode(updateDTO.getPassword());
-        Member updateMember =  memberRepository.findById(member.getId()).orElseThrow(
-                () -> new ResourceNotFoundException("Member", "Member Id", member.getId())
+        Member updateMember =  memberRepository.findByEmail(member.getEmail()).orElseThrow(
+                () -> new ResourceNotFoundException("Member", "Member Email", member.getEmail())
         );
         updateMember.update(encodePwd, updateDTO.getName());
         return MemberResponseDTO.fromEntity(updateMember);
@@ -93,12 +91,12 @@ public class MemberService {
 
     /**
      * 사용자 인증
-     * @param id
+     * @param email
      * @param pwd
      */
-    private void authenticate(String id, String pwd) {
+    private void authenticate(String email, String pwd) {
         try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(id, pwd));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, pwd));
         } catch (DisabledException e) {
             throw new MemberException("인증되지 않은 아이디입니다.", HttpStatus.BAD_REQUEST);
         } catch (BadCredentialsException e) {
@@ -110,8 +108,8 @@ public class MemberService {
      * 아이디(이메일) 중복 체크
      * @param email
      */
-    private void isExistUserId(String id) {
-        if (memberRepository.findById(id).isPresent()) {
+    private void isExistUserEmail(String email) {
+        if (memberRepository.findByEmail(email).isPresent()) {
             throw new MemberException("이미 사용 중인 아이디입니다.", HttpStatus.BAD_REQUEST);
         }
     }

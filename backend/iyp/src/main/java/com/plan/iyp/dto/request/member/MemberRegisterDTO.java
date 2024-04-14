@@ -13,15 +13,13 @@ import lombok.Setter;
 @NoArgsConstructor
 public class MemberRegisterDTO {
 
-	private String id;
     private String email;
     private String password;
     private String passwordCheck;
     private String name;
 
     @Builder
-    public MemberRegisterDTO(String id, String email, String password, String passwordCheck, String name) {
-    	this.id = id;
+    public MemberRegisterDTO(String email, String password, String passwordCheck, String name) {
         this.email = email;
         this.password = password;
         this.passwordCheck = passwordCheck;
@@ -31,7 +29,6 @@ public class MemberRegisterDTO {
     // DTO -> Entity
     public static Member ofEntity(MemberRegisterDTO dto) {
         return Member.builder()
-        		.id(dto.getId())
                 .email(dto.getEmail())
                 .password(dto.getPassword())
                 .name(dto.getName())

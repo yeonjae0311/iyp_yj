@@ -71,11 +71,6 @@ const JoinForm = ({ onChange, onSubmit, form, errors }) => {
         <ErrorMessages errors={errors} field="name" />
       </div>
       <div className="form_input">
-        <Text>{t('아이디')}</Text>
-        <InputText name="id" value={form.id} onChange={onChange} />
-        <ErrorMessages errors={errors} field="id" />
-      </div>
-      <div className="form_input">
         <Text>{t('비밀번호')}</Text>
         <InputText
           type="password"
@@ -89,11 +84,11 @@ const JoinForm = ({ onChange, onSubmit, form, errors }) => {
         <Text>{t('비밀번호 확인')}</Text>
         <InputText
           type="password"
-          name="confirmPassword"
-          value={form.confirmPassword}
+          name="passwordCheck"
+          value={form.passwordCheck}
           onChange={onChange}
         />
-        <ErrorMessages errors={errors} field="confirmPw" />
+        <ErrorMessages errors={errors} field="passwordCheck" />
       </div>
       <div className="btn">
         <SubmitButton type="submit">{t('가입하기')}</SubmitButton>

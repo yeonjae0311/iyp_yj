@@ -12,19 +12,19 @@ import lombok.Setter;
 @NoArgsConstructor
 public class MemberResponseDTO {
 
-    private String id;
+    private String email;
     private String name;
 
     @Builder
-    public MemberResponseDTO(String id, String name) {
-        this.id = id;
+    public MemberResponseDTO(String email, String name) {
+        this.email= email;
         this.name = name;
     }
 
     // Entity -> DTO
     public static MemberResponseDTO fromEntity(Member member) {
         return MemberResponseDTO.builder()
-                .id(member.getId())
+                .email(member.getEmail())
                 .name(member.getName())
                 .build();
     }

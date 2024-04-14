@@ -7,7 +7,15 @@ const Main = () => {
   const userContext = useContext(UserContext);
   const {
     state: { isLogin },
+    actions: { setIsLogin },
   } = userContext;
+
+  if (localStorage.getItem('iyp_access_token')) {
+    setIsLogin(true);
+  } else {
+    setIsLogin(false);
+  }
+
   return isLogin ? <MainOn /> : <MainOut />;
 };
 

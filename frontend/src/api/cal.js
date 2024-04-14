@@ -2,7 +2,9 @@ import apiRequest from '../lib/apiRequest';
 
 export const apiSchedule = (formData) =>
   new Promise((resolve, reject) => {
-    apiRequest('/cal/insert', 'POST', formData)
+    apiRequest('api/cal/insert', 'POST', formData, {
+      Authorization: `Bearer ${localStorage.getItem('iyp_access_token')}`,
+    })
       .then((res) => {
         if (res.data) {
           resolve(res.data);
@@ -13,11 +15,13 @@ export const apiSchedule = (formData) =>
       .catch((err) => reject(err));
   });
 
-export const apiUpdateSchedule = (data) =>
+export const apiCheckSchedule = (data) =>
   new Promise((resolve, reject) => {
-    apiRequest('api/cal/todo', 'POST', data)
+    apiRequest('api/cal/todo', 'POST', data, {
+      Authorization: `Bearer ${localStorage.getItem('iyp_access_token')}`,
+    })
       .then((res) => {
-        resolve(res.data);
+        resolve(res);
       })
       .catch((err) => {
         reject(err);

@@ -131,6 +131,11 @@ const CalModal = ({
           <div className="time">
             {date}
             <input type="hidden" value={date} name="s_date" />
+            <input
+              type="hidden"
+              value={localStorage.getItem('email')}
+              name="email"
+            />
           </div>
           <div className="content">
             <div>

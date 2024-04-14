@@ -44,10 +44,15 @@ const LoginForm = ({ onChange, onSubmit, form, errors }) => {
       <SubTitle size="25px">{t("I'm Your Planner")}</SubTitle>
       <div className="text">
         <MiniTitle size={'1.2rem'}>{t('아이디')}</MiniTitle>
-        <InputText type="text" name="id" value={form.id} onChange={onChange} />
+        <InputText
+          type="text"
+          name="email"
+          value={form.email}
+          onChange={onChange}
+        />
       </div>
 
-      <Message>{errors.id}</Message>
+      <Message>{errors.email}</Message>
 
       <div className="text">
         <MiniTitle size={'1.2rem'}>{t('비밀번호')}</MiniTitle>

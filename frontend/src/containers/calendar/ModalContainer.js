@@ -63,11 +63,11 @@ const ModalContainer = ({ selectedDate, closeModal }) => {
       if (!hasErrors) {
         apiSchedule(form)
           .then((res) => {
-            if (res !== 'success') {
+            if (res == null) {
               alert('등록 실패');
             } else {
               alert('등록 성공');
-              redirect('/');
+              redirect('/monthly');
             }
           })
           .catch((err) => {

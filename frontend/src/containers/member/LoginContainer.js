@@ -8,7 +8,7 @@ import { apiLogin } from '../../api/member';
 
 const LoginContainer = () => {
   const [form, setForm] = useState({
-    id: '',
+    email: '',
     password: '',
   });
 
@@ -35,7 +35,7 @@ const LoginContainer = () => {
 
       /* 필수 입력 항목 S */
       const requiredFields = {
-        id: t('아이디를 입력하세요.'),
+        email: t('아이디를 입력하세요.'),
         password: t('비밀번호를 입력하세요.'),
       };
       /* 필수 입력 항목 E */
@@ -66,16 +66,16 @@ const LoginContainer = () => {
           console.log(token.data);
           let isLogin = false;
 
-          if (token.data.id !== form.id) {
+          if (token.data.email !== form.email) {
             alert(token.data);
             return;
           }
           console.log('[Login.js] login() success :D');
-          alert(token.data.id + '님, 성공적으로 로그인 되었습니다 🔐');
+          alert(token.data.email + '님, 성공적으로 로그인 되었습니다 🔐');
           isLogin = true;
 
           setIsLogin(isLogin);
-          localStorage.setItem('Id', token.data.id);
+          localStorage.setItem('email', token.data.email);
           localStorage.setItem('iyp_access_token', token.data.token);
 
           if (isLogin === true) {

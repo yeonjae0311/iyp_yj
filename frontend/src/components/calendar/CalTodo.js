@@ -11,10 +11,7 @@ const CalTodo = ({ currentMonth, toDo }) => {
         <SubTitle>
           {format(currentMonth, 'yyyy')}.{format(currentMonth, 'MM')}
         </SubTitle>
-        <MiniTitle>To-do</MiniTitle>
-        <div>
-          <div key={toDo.sidx} content={toDo.content}></div>
-        </div>
+        <MiniTitle>toDo</MiniTitle>
       </div>
     </div>
   );

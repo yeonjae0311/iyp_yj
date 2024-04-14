@@ -8,6 +8,7 @@ import React, { useContext, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import UserContext from '../../modules/UserContext';
 import { apiMemberInfo } from '../../api/member';
+import { id } from 'date-fns/locale';
 
 const MainOn = () => {
   const { t } = useTranslation();
@@ -37,8 +38,8 @@ const MainOn = () => {
   };
 
   const data = {
-    id: localStorage.getItem('id'),
-    token: localStorage.getItem('iyp_access_token'),
+    id: 'id',
+    token: 'token',
   };
 
   const profile = (data) => {
@@ -46,7 +47,6 @@ const MainOn = () => {
       .then((profile) => {
         if (profile !== null) {
           setUserInfo(profile.data.name);
-          console.log(profile);
         }
       })
       .catch((err) => {

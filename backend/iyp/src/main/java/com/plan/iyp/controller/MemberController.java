@@ -31,8 +31,8 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping("/checkId")
-    public ResponseEntity<?> checkIdDuplicate(@RequestParam String id) {
-        memberService.checkIdDuplicate(id);
+    public ResponseEntity<?> checkEmailDuplicate(@RequestParam String email) {
+        memberService.checkEmailDuplicate(email);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 

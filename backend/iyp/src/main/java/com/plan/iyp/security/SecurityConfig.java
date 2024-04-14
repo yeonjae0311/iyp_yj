@@ -42,8 +42,8 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource))
                 .authorizeHttpRequests(authorize
                         -> authorize
-                        .requestMatchers("/api/member/**").permitAll()
-                        .requestMatchers("/cal/**").hasRole("USER"))
+                        .requestMatchers("api/member/**").permitAll()
+                        .requestMatchers("/api/cal/**").hasRole("USER"))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(excep -> excep.authenticationEntryPoint(jwtAuthenticationEntryPoint))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)

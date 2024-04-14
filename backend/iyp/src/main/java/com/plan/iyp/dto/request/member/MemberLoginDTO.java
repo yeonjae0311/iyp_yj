@@ -14,12 +14,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class MemberLoginDTO {
 
-    private String id;
+    private String email;
     private String password;
 
     @Builder
-    public MemberLoginDTO(String id, String password) {
-        this.id = id;
+    public MemberLoginDTO(String email, String password) {
+        this.email = email;
         this.password = password;
     }
 }
