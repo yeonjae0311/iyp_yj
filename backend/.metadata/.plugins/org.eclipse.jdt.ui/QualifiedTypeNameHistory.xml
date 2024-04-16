@@ -44,7 +44,12 @@
     <fullyQualifiedTypeName name="java.util.Set"/>
     <fullyQualifiedTypeName name="jakarta.persistence.CascadeType"/>
     <fullyQualifiedTypeName name="jakarta.persistence.FetchType"/>
-    <fullyQualifiedTypeName name="com.plan.iyp.entity.Member"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.annotation.AuthenticationPrincipal"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIgnore"/>
     <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
+    <fullyQualifiedTypeName name="org.springframework.data.repository.query.Param"/>
+    <fullyQualifiedTypeName name="com.plan.iyp.dto.request.cal.CalTodoDTO"/>
+    <fullyQualifiedTypeName name="org.springframework.security.access.method.P"/>
+    <fullyQualifiedTypeName name="com.plan.iyp.entity.Member"/>
 </qualifiedTypeNameHistroy>

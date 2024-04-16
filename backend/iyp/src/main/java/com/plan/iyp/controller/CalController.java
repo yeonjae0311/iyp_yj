@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.plan.iyp.dto.request.cal.CalInsertDTO;
+import com.plan.iyp.dto.request.cal.CalTodoDTO;
 import com.plan.iyp.dto.response.cal.ResCalInsertDTO;
 import com.plan.iyp.dto.response.cal.ResCalListDTO;
 import com.plan.iyp.entity.Member;
-import com.plan.iyp.entity.Schedule;
 import com.plan.iyp.service.CalService;
 
 import lombok.RequiredArgsConstructor;

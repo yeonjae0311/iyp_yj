@@ -69,7 +69,6 @@ public class MemberController {
     public ResponseEntity<MemberResponseDTO> profile(
             @AuthenticationPrincipal Member member) {
        MemberResponseDTO memberProfile = memberService.profile(member);
-       System.out.println(memberProfile.getName());
         return ResponseEntity.status(HttpStatus.OK).body(memberProfile);
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.plan.iyp.common.exception.ResourceNotFoundException;
 import com.plan.iyp.dto.request.cal.CalInsertDTO;
+import com.plan.iyp.dto.request.cal.CalTodoDTO;
 import com.plan.iyp.dto.response.cal.ResCalInsertDTO;
 import com.plan.iyp.dto.response.cal.ResCalListDTO;
 import com.plan.iyp.entity.Member;
@@ -38,7 +39,9 @@ public class CalService {
 	   }
 	   
 	   public List<ResCalListDTO> list(Member member){	
+		   System.out.println(member.getId());
 		   List<Schedule> list = calRepository.findByMember_Id(member.getId());
+		   System.out.println(list);
 		   List<ResCalListDTO> listToDo = new ArrayList<>();
 		   for(Schedule schedule : list){
 	            ResCalListDTO dto = ResCalListDTO.fromEntity(schedule);

@@ -1,8 +1,8 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CalHeader from '../../components/calendar/CalHeader';
 import CalBody from '../../components/calendar/CalBody';
 import CalDays from '../../components/calendar/CalDays';
-import { subMonths, addMonths, format } from 'date-fns';
+import { subMonths, addMonths } from 'date-fns';
 import CalTodo from '../../components/calendar/CalTodo';
 import ModalContainer from './ModalContainer';
 import { apiCheckSchedule } from '../../api/cal';
@@ -11,8 +11,16 @@ const MonthlyContainer = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isOpen, setIsOpen] = useState(false);
-
-  const [toDo, setTodo] = useState([]);
+  const [toDo, setTodo] = useState([
+    {
+      s_title: '',
+      s_content: '',
+      s_color: '',
+      s_date: '',
+      scheId: '',
+    },
+  ]);
+  const [s_title, setS_title] = useState([]);
 
   const prevMonth = () => {
     setCurrentMonth(subMonths(currentMonth, 1));
@@ -32,21 +40,12 @@ const MonthlyContainer = () => {
     setIsOpen(false);
   };
 
-  const data = {
-    currentMonth: currentMonth,
-  };
-
-  const dataId = useRef(0);
-
-  useEffect(
-    (data) => {
-      apiCheckSchedule(data).then((todo) => {
-        setTodo(todo.data);
-        console.log(toDo);
-      });
-    },
-    [currentMonth],
-  );
+  useEffect(() => {
+    apiCheckSchedule().then((todo) => {
+      setTodo(todo.data);
+      console.log(toDo);
+    });
+  }, [currentMonth]);
 
   return (
     <div className="monthly">
