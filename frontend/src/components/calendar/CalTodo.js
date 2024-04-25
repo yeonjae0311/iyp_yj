@@ -1,22 +1,34 @@
 import { format } from 'date-fns';
 import { MiniTitle, SubTitle } from '../commons/TitleStyle';
 import { TodoDiv } from '../commons/TodoStyle';
+import { useEffect, useState } from 'react';
 
 const CalTodo = ({ currentMonth, toDo }) => {
-  const todos =
-    toDo[0].s_title !== ''
-      ? toDo.map((toDo) => (
-          <div key={toDo.scheId}>
-            {format(toDo.s_date, 'MM/dd')}일 : {toDo.s_title}
-          </div>
-        ))
-      : null;
+  const [todos, setTodos] = useState();
+
+  useEffect(
+    () =>
+      setTodos(
+        toDo.sdate !== ''
+          ? toDo
+              .filter(
+                (toDo) =>
+                  toDo.sdate.substr(5, 2) === format(currentMonth, 'MM'),
+              )
+              .map((toDo) => (
+                <div key={toDo.scheId}>
+                  {toDo.sdate.substr(5, 5)} : {toDo.stitle}
+                </div>
+              ))
+          : null,
+      ),
+    [toDo],
+  );
+
   return (
     <div className="monthly_todo">
       <div>
-        <SubTitle>
-          {format(currentMonth, 'yyyy')}.{format(currentMonth, 'MM')}
-        </SubTitle>
+        <SubTitle>{format(currentMonth, 'yyyy')}</SubTitle>
         <MiniTitle>To-Do</MiniTitle>
         <TodoDiv>{todos}</TodoDiv>
       </div>

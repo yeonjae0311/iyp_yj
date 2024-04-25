@@ -13,27 +13,27 @@ import lombok.Setter;
 public class ResCalListDTO {
 
     private Long scheId;
-    private String s_title;
-    private String s_content;
-    private String s_date;
-    private String s_color;
+    private String sTitle;
+    private String sContent;
+    private String sDate;
+    private String sColor;
 
     @Builder
-    public ResCalListDTO(Long scheId, String s_title, String s_content, String s_date, String s_color) {
+    public ResCalListDTO(Long scheId, String sTitle, String sContent, String sDate, String sColor) {
         this.scheId = scheId;
-        this.s_title = s_title;
-        this.s_content = s_content;
-        this.s_date = s_date;
-        this.s_color = s_color;
+        this.sTitle = sTitle;
+        this.sContent = sContent;
+        this.sDate = sDate;
+        this.sColor = sColor;
     }
 
     public static ResCalListDTO fromEntity(Schedule schedule) {
         return ResCalListDTO.builder()
-                .scheId(schedule.getS_idx())
-                .s_title(schedule.getS_title())
-                .s_content(schedule.getS_content())
-                .s_date(schedule.getS_date())
-                .s_color(schedule.getS_color())
+                .scheId(schedule.getSIdx())
+                .sTitle(schedule.getSTitle())
+                .sContent(schedule.getSContent())
+                .sDate(schedule.getSDate())
+                .sColor(schedule.getSColor())
                 .build();
     }
 }

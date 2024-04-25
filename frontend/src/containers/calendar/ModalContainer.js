@@ -3,22 +3,23 @@ import CalModal from '../../components/calendar/CalModal';
 import { produce } from 'immer';
 import { useTranslation } from 'react-i18next';
 import { apiSchedule } from '../../api/cal';
-import { redirect } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import UserContext from '../../modules/UserContext';
 
 const ModalContainer = ({ selectedDate, closeModal }) => {
   const { t } = useTranslation();
-  const date = format(selectedDate, 'yyyy-MM-dd');
+  const date = format(selectedDate, 'yyyy/MM/dd');
+  const navigate = useNavigate();
   const {
     state: { userInfo },
   } = useContext(UserContext);
 
   const [form, setForm] = useState({
-    s_title: '',
-    s_date: date,
-    s_content: '',
-    s_color: '',
+    stitle: '',
+    sdate: date,
+    scontent: '',
+    scolor: '',
     u_idx: userInfo.u_idx,
   });
 
@@ -34,7 +35,7 @@ const ModalContainer = ({ selectedDate, closeModal }) => {
 
   const handleColorPicker = (color, event) => {
     event.preventDefault();
-    setForm({ ...form, s_color: color.hex });
+    setForm({ ...form, scolor: color.hex });
   };
 
   const onSubmit = useCallback(
@@ -42,9 +43,9 @@ const ModalContainer = ({ selectedDate, closeModal }) => {
       e.preventDefault();
 
       const requiredFields = {
-        s_title: t('제목을 입력하세요'),
-        s_content: t('내용을 입력하세요.'),
-        s_color: t('색상을 선택해주세요'),
+        stitle: t('제목을 입력하세요'),
+        scontent: t('내용을 입력하세요.'),
+        scolor: t('색상을 선택해주세요'),
       };
 
       let hasErrors = false;
@@ -67,7 +68,7 @@ const ModalContainer = ({ selectedDate, closeModal }) => {
               alert('등록 실패');
             } else {
               alert('등록 성공');
-              redirect('/monthly');
+              window.location.href = '/monthly';
             }
           })
           .catch((err) => {

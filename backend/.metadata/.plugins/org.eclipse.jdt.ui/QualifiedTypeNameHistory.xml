@@ -52,4 +52,7 @@
     <fullyQualifiedTypeName name="com.plan.iyp.dto.request.cal.CalTodoDTO"/>
     <fullyQualifiedTypeName name="org.springframework.security.access.method.P"/>
     <fullyQualifiedTypeName name="com.plan.iyp.entity.Member"/>
+    <fullyQualifiedTypeName name="org.hibernate.internal.build.AllowSysOut"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
 </qualifiedTypeNameHistroy>

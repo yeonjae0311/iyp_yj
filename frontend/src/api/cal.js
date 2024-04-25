@@ -17,7 +17,7 @@ export const apiSchedule = (formData) =>
 
 export const apiCheckSchedule = (data) =>
   new Promise((resolve, reject) => {
-    apiRequest('api/cal/todo', 'POST', data, {
+    apiRequest('api/cal/todo', 'GET', data, {
       Authorization: `Bearer ${localStorage.getItem('iyp_access_token')}`,
     })
       .then((res) => {

@@ -8,7 +8,6 @@ import React, { useContext, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import UserContext from '../../modules/UserContext';
 import { apiMemberInfo } from '../../api/member';
-import { id } from 'date-fns/locale';
 
 const MainOn = () => {
   const { t } = useTranslation();

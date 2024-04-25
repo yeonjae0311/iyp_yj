@@ -1,5 +1,4 @@
 import { createContext, useState } from 'react';
-import { apiMemberInfo } from '../api/member';
 
 const UserContext = createContext({
   state: {

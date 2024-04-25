@@ -39,9 +39,7 @@ public class CalService {
 	   }
 	   
 	   public List<ResCalListDTO> list(Member member){	
-		   System.out.println(member.getId());
 		   List<Schedule> list = calRepository.findByMember_Id(member.getId());
-		   System.out.println(list);
 		   List<ResCalListDTO> listToDo = new ArrayList<>();
 		   for(Schedule schedule : list){
 	            ResCalListDTO dto = ResCalListDTO.fromEntity(schedule);

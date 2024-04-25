@@ -13,14 +13,13 @@ const MonthlyContainer = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [toDo, setTodo] = useState([
     {
-      s_title: '',
-      s_content: '',
-      s_color: '',
-      s_date: '',
+      stitle: '',
+      scontent: '',
+      scolor: '',
+      sdate: '',
       scheId: '',
     },
   ]);
-  const [s_title, setS_title] = useState([]);
 
   const prevMonth = () => {
     setCurrentMonth(subMonths(currentMonth, 1));

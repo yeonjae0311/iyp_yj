@@ -20,32 +20,32 @@ import lombok.Setter;
 public class Schedule{
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "s_idx")
-    private Long s_idx;
+    @Column(name = "sidx")
+    private Long sIdx;
 
     @Column(nullable = false)
-    private String s_date;
+    private String sDate;
 
     @Column(nullable = false)
-    private String s_title;
+    private String sTitle;
     
     @Column(nullable = false)
-    private String s_content;
+    private String sContent;
 
     @Column(nullable = false)
-    private String s_color;
+    private String sColor;
     
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id")
 	private Member member;
     
     @Builder
-    public Schedule(Long s_idx, String s_title, String s_date, String s_content, String s_color, Member member) {
-        this.s_idx= s_idx;
-        this.s_date = s_date;
-        this.s_color = s_color;
-        this.s_title = s_title;
-        this.s_content = s_content;
+    public Schedule(Long sIdx, String sTitle, String sDate, String sContent, String sColor, Member member) {
+        this.sIdx= sIdx;
+        this.sDate = sDate;
+        this.sColor = sColor;
+        this.sTitle = sTitle;
+        this.sContent = sContent;
         this.member = member;
     }
     

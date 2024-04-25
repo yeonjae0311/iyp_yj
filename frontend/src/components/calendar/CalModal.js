@@ -10,6 +10,7 @@ import { FiLink } from 'react-icons/fi';
 import { FaRegShareFromSquare } from 'react-icons/fa6';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const FormBoxModal = styled(FormBox)`
   margin: auto;
@@ -121,16 +122,16 @@ const CalModal = ({
               margin_bottom={'0'}
               placeholder={t(`제목 입력`)}
               onChange={onChange}
-              name="s_title"
+              name="stitle"
               readOnly={!isEdit}
-              value={form.s_title}
+              value={form.stitle}
               $edit={isEdit}
             />
             <RxCross2 className="crossBtn" size="35" onClick={closeModal} />
           </div>
           <div className="time">
             {date}
-            <input type="hidden" value={date} name="s_date" />
+            <input type="hidden" value={date} name="sdate" />
             <input
               type="hidden"
               value={localStorage.getItem('email')}
@@ -141,11 +142,11 @@ const CalModal = ({
             <div>
               <MiniTitle>{t(`상세내용`)}</MiniTitle>{' '}
               <TextArea
-                name="s_content"
+                name="scontent"
                 placeholder={t(`ex) 3시 서울00치과에서 교정 예약 되어있음`)}
                 readOnly={!isEdit}
                 onChange={onChange}
-                value={form.s_content}
+                value={form.scontent}
                 $edit={isEdit}
               />
             </div>
@@ -153,8 +154,8 @@ const CalModal = ({
               <MiniTitle>{t(`색상`)}</MiniTitle>
               <CirclePicker
                 circleSize={25}
-                name="s_color"
-                value={form.s_color}
+                name="scolor"
+                value={form.scolor}
                 onChange={handleColorPicker}
               />
             </div>

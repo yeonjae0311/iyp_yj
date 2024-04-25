@@ -12,26 +12,26 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CalInsertDTO {
 	
-    private String s_date;
-    private String s_title;
-    private String s_content;
-    private String s_color;
+    private String sDate;
+    private String sTitle;
+    private String sContent;
+    private String sColor;
 
     @Builder
-    public CalInsertDTO(String s_date, String s_title, String s_content, String s_color) {
-        this.s_date = s_date;
-        this.s_title = s_title;
-        this.s_content = s_content;
-        this.s_color = s_color;
+    public CalInsertDTO(String sDate, String sTitle, String sContent, String sColor) {
+        this.sDate = sDate;
+        this.sTitle = sTitle;
+        this.sContent = sContent;
+        this.sColor = sColor;
     }
 
     // DTO -> Entity
     public static Schedule ofEntity(CalInsertDTO dto) {
         return Schedule.builder()
-                .s_date(dto.getS_date())
-                .s_title(dto.getS_title())
-                .s_content(dto.getS_content())
-                .s_color(dto.getS_color())
+                .sDate(dto.getSDate())
+                .sTitle(dto.getSTitle())
+                .sContent(dto.getSContent())
+                .sColor(dto.getSColor())
                 .build();
     }
 }
