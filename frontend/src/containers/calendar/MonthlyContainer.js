@@ -5,13 +5,25 @@ import CalDays from '../../components/calendar/CalDays';
 import { subMonths, addMonths } from 'date-fns';
 import CalTodo from '../../components/calendar/CalTodo';
 import ModalContainer from './ModalContainer';
-import { apiCheckSchedule } from '../../api/cal';
+import { apiCheckSchedule, apiSelectSchedule } from '../../api/cal';
+import ModalUpdateContainer from './ModalUpdateContainer';
 
 const MonthlyContainer = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isOpen, setIsOpen] = useState(false);
+  const [isUpdateOpen, setIsUpdateOpen] = useState(false);
+  const [scheId, setScheId] = useState('');
   const [toDo, setTodo] = useState([
+    {
+      stitle: '',
+      scontent: '',
+      scolor: '',
+      sdate: '',
+      scheId: '',
+    },
+  ]);
+  const [toDoUp, setTodoUp] = useState([
     {
       stitle: '',
       scontent: '',
@@ -39,16 +51,33 @@ const MonthlyContainer = () => {
     setIsOpen(false);
   };
 
+  const updateModal = (e) => {
+    const data = { sidx: e.target.id };
+    setScheId(e.target.id);
+    apiSelectSchedule(data).then((res) => {
+      setTodoUp(res);
+    });
+    setIsUpdateOpen(true);
+  };
+
+  const closeUpdateModal = (e) => {
+    e.stopPropagation();
+    setIsUpdateOpen(false);
+  };
+
   useEffect(() => {
     apiCheckSchedule().then((todo) => {
       setTodo(todo.data);
-      console.log(toDo);
     });
   }, [currentMonth]);
 
   return (
     <div className="monthly">
-      <CalTodo currentMonth={currentMonth} toDo={toDo} />
+      <CalTodo
+        currentMonth={currentMonth}
+        toDo={toDo}
+        updateModal={updateModal}
+      />
       <div className="calendar">
         <CalHeader
           currentMonth={currentMonth}
@@ -62,6 +91,15 @@ const MonthlyContainer = () => {
             selectedDate={selectedDate}
             setIsOpen={setIsOpen}
             closeModal={closeModal}
+          />
+        )}
+        {isUpdateOpen && (
+          <ModalUpdateContainer
+            toDoUp={toDoUp}
+            selectedDate={selectedDate}
+            setIsUpdateOpen={setIsUpdateOpen}
+            closeUpdateModal={closeUpdateModal}
+            scheId={scheId}
           />
         )}
         <CalBody

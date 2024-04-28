@@ -63,7 +63,6 @@ const LoginContainer = () => {
 
       apiLogin(form)
         .then((token) => {
-          console.log(token.data);
           let isLogin = false;
 
           if (token.data.email !== form.email) {

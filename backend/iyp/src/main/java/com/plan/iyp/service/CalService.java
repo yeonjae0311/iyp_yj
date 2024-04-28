@@ -2,14 +2,16 @@ package com.plan.iyp.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.plan.iyp.common.exception.ResourceNotFoundException;
 import com.plan.iyp.dto.request.cal.CalInsertDTO;
-import com.plan.iyp.dto.request.cal.CalTodoDTO;
+import com.plan.iyp.dto.request.cal.CalUpdateDTO;
 import com.plan.iyp.dto.response.cal.ResCalInsertDTO;
 import com.plan.iyp.dto.response.cal.ResCalListDTO;
+import com.plan.iyp.dto.response.cal.ResCalOneDTO;
 import com.plan.iyp.entity.Member;
 import com.plan.iyp.entity.Schedule;
 import com.plan.iyp.repository.CalRepository;
@@ -46,6 +48,29 @@ public class CalService {
 	            listToDo.add(dto); 
 	        }
 		   return listToDo;
+	   }
+	   
+	   public ResCalOneDTO one (Member member, Long scheId) {
+		   Schedule sche = calRepository.findBysIdx(scheId).orElseThrow(
+				   () -> new ResourceNotFoundException("Schdule", "scheId", String.valueOf(scheId)));
+		   ResCalOneDTO toDoOne = ResCalOneDTO.fromEntity(sche);
+		   return toDoOne;
+	   }
+	   
+	   public ResCalInsertDTO update(CalUpdateDTO updateDTO) {
+		   
+		   Schedule updateSchedule = calRepository.findById(updateDTO.getSidx()).orElseThrow(
+				   () -> new ResourceNotFoundException("Schdule", "scheId", String.valueOf(updateDTO.getSidx())));		   
+		   
+		   updateSchedule.setSTitle(updateDTO.getSTitle());
+		   updateSchedule.setSContent(updateDTO.getSContent());
+		   updateSchedule.setSColor(updateDTO.getSColor());		 
+		   
+		   return ResCalInsertDTO.fromEntity(updateSchedule);
+	   }
+	   
+	   public void delete(Long scheId) {
+		   calRepository.deleteById(scheId);
 	   }
 	       
 }

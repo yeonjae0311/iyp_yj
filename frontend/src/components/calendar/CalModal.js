@@ -10,7 +10,6 @@ import { FiLink } from 'react-icons/fi';
 import { FaRegShareFromSquare } from 'react-icons/fa6';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const FormBoxModal = styled(FormBox)`
   margin: auto;

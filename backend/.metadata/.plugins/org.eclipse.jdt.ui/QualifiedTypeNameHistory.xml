@@ -5,7 +5,6 @@
     <fullyQualifiedTypeName name="jakarta.persistence.Column"/>
     <fullyQualifiedTypeName name="jakarta.persistence.EnumType"/>
     <fullyQualifiedTypeName name="lombok.Getter"/>
-    <fullyQualifiedTypeName name="java.util.Optional"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.AuthenticationException"/>
     <fullyQualifiedTypeName name="lombok.Value"/>
     <fullyQualifiedTypeName name="java.util.function.Function"/>
@@ -33,7 +32,6 @@
     <fullyQualifiedTypeName name="lombok.extern.slf4j.Slf4j"/>
     <fullyQualifiedTypeName name="com.plan.iyp.dto.response.cal.CalResponseDTO"/>
     <fullyQualifiedTypeName name="com.plan.iyp.service.CalService"/>
-    <fullyQualifiedTypeName name="lombok.Builder"/>
     <fullyQualifiedTypeName name="com.plan.iyp.dto.response.member.MemberResponseDTO"/>
     <fullyQualifiedTypeName name="com.plan.iyp.dto.response.cal.ResCalInsertDTO"/>
     <fullyQualifiedTypeName name="lombok.Setter"/>
@@ -55,4 +53,8 @@
     <fullyQualifiedTypeName name="org.hibernate.internal.build.AllowSysOut"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="lombok.Builder"/>
+    <fullyQualifiedTypeName name="com.plan.iyp.dto.request.cal.CalSelectOneDTO"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PatchMapping"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
 </qualifiedTypeNameHistroy>

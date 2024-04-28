@@ -49,6 +49,12 @@ public class Schedule{
         this.member = member;
     }
     
+    public void update(String sTitle, String sContent, String sColor) {
+        this.sTitle = sTitle;
+        this.sContent = sContent;
+        this.sColor = sColor;
+    }
+    
     public void setMappingMember(Member member) {
         this.member = member;
         member.getSchedules().add(this);

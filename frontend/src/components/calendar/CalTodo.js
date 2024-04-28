@@ -3,7 +3,7 @@ import { MiniTitle, SubTitle } from '../commons/TitleStyle';
 import { TodoDiv } from '../commons/TodoStyle';
 import { useEffect, useState } from 'react';
 
-const CalTodo = ({ currentMonth, toDo }) => {
+const CalTodo = ({ currentMonth, toDo, updateModal, setKey }) => {
   const [todos, setTodos] = useState();
 
   useEffect(
@@ -16,7 +16,7 @@ const CalTodo = ({ currentMonth, toDo }) => {
                   toDo.sdate.substr(5, 2) === format(currentMonth, 'MM'),
               )
               .map((toDo) => (
-                <div key={toDo.scheId}>
+                <div onClick={updateModal} key={toDo.scheId} id={toDo.scheId}>
                   {toDo.sdate.substr(5, 5)} : {toDo.stitle}
                 </div>
               ))

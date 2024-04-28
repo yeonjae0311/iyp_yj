@@ -3,14 +3,12 @@ import CalModal from '../../components/calendar/CalModal';
 import { produce } from 'immer';
 import { useTranslation } from 'react-i18next';
 import { apiSchedule } from '../../api/cal';
-import { redirect, useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import UserContext from '../../modules/UserContext';
 
 const ModalContainer = ({ selectedDate, closeModal }) => {
   const { t } = useTranslation();
   const date = format(selectedDate, 'yyyy/MM/dd');
-  const navigate = useNavigate();
   const {
     state: { userInfo },
   } = useContext(UserContext);

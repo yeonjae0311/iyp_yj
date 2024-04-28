@@ -2,7 +2,7 @@ import '../../styles/outlines/Header.scss';
 import eng from '../../images/lang/america.png';
 import kor from '../../images/lang/kor.png';
 import { NavLink } from 'react-router-dom';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../i18n';
 import UserContext from '../../modules/UserContext';
@@ -22,6 +22,14 @@ const Header = () => {
     setIsLogin(false);
     setUserInfo(null);
   };
+
+  useEffect(() => {
+    if (localStorage.getItem('iyp_access_token')) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, []);
 
   return (
     <header className="Header">
