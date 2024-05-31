@@ -13,10 +13,15 @@ const CalTodo = ({ currentMonth, toDo, updateModal, setKey }) => {
           ? toDo
               .filter(
                 (toDo) =>
-                  toDo.sdate.substr(5, 2) === format(currentMonth, 'MM'),
+                  toDo.sdate.substr(0, 7) === format(currentMonth, 'yyyy/MM'),
               )
               .map((toDo) => (
-                <div onClick={updateModal} key={toDo.scheId} id={toDo.scheId}>
+                <div
+                  onClick={updateModal}
+                  key={toDo.scheId}
+                  id={toDo.scheId}
+                  style={{ color: `${toDo.scolor}` }}
+                >
                   {toDo.sdate.substr(5, 5)} : {toDo.stitle}
                 </div>
               ))

@@ -2,7 +2,6 @@ package com.plan.iyp.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -57,16 +56,15 @@ public class CalService {
 		   return toDoOne;
 	   }
 	   
-	   public ResCalInsertDTO update(CalUpdateDTO updateDTO) {
+	   
+	   public Schedule update(CalUpdateDTO updateDTO) {
 		   
 		   Schedule updateSchedule = calRepository.findById(updateDTO.getSidx()).orElseThrow(
-				   () -> new ResourceNotFoundException("Schdule", "scheId", String.valueOf(updateDTO.getSidx())));		   
-		   
-		   updateSchedule.setSTitle(updateDTO.getSTitle());
-		   updateSchedule.setSContent(updateDTO.getSContent());
-		   updateSchedule.setSColor(updateDTO.getSColor());		 
-		   
-		   return ResCalInsertDTO.fromEntity(updateSchedule);
+				   () -> new ResourceNotFoundException("Schdule", "scheId", String.valueOf(updateDTO.getSidx())));		   		   
+
+		   updateSchedule.update(updateDTO.getSTitle(), updateDTO.getSContent(), updateDTO.getSColor());		   		 	  
+
+		   return updateSchedule;
 	   }
 	   
 	   public void delete(Long scheId) {

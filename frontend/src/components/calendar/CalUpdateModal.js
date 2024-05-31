@@ -4,7 +4,6 @@ import { MiniTitle } from '../commons/TitleStyle';
 import { TextArea, TitleInput } from '../commons/InputStyle';
 
 import { RxCross2 } from 'react-icons/rx';
-import { CirclePicker } from 'react-color';
 import { FiLink } from 'react-icons/fi';
 import { FaRegShareFromSquare } from 'react-icons/fa6';
 import { useTranslation } from 'react-i18next';
@@ -20,7 +19,7 @@ const FormBoxModal = styled(FormBox)`
     display: flex;
     width: 110px;
     align-items: baseline;
-    width: 150px;
+    width: 50px;
 
     .editBtn {
       display: flex;
@@ -33,19 +32,9 @@ const FormBoxModal = styled(FormBox)`
       transition: 0.2s ease-in-out;
       color: gray;
     }
-
-    .editBtn.submitBtn {
-      border: none;
-      background-color: white;
-    }
-
     .editBtn.deleteBtn {
       border: none;
       background-color: white;
-    }
-
-    .editBtn.modiBtn {
-      margin-right: 6px;
     }
   }
 
@@ -102,13 +91,18 @@ const ModalBackdrop = styled.div`
   bottom: 0;
 `;
 
+const ColorBox = styled.div`
+  width: 150px;
+  height: 117px;
+  border-radius: 5%;
+`;
+
 const CalUpdateModal = ({
   selectedDate,
   closeUpdateModal,
   onChange,
   form,
   onSubmit,
-  handleColorPicker,
   setFormColor,
   toDoUp,
   deleteClick,
@@ -164,11 +158,9 @@ const CalUpdateModal = ({
             </div>
             <div className="deco">
               <MiniTitle>{t(`색상`)}</MiniTitle>
-              <CirclePicker
-                circleSize={25}
+              <ColorBox
                 name="scolor"
-                value={form.scolor}
-                onChange={handleColorPicker}
+                style={{ backgroundColor: `${form.scolor}` }}
               />
             </div>
             <div className="footer">
@@ -177,12 +169,6 @@ const CalUpdateModal = ({
                 <FaRegShareFromSquare />
               </div>
               <div className="btnBar">
-                <div className="editBtn modiBtn" onClick={editToggle}>
-                  {t(`편집`)}
-                </div>
-                <button className="editBtn submitBtn" type="submit">
-                  {t(`등록`)}
-                </button>
                 <div className="editBtn deleteBtn" onClick={deleteClick}>
                   {t(`삭제`)}
                 </div>

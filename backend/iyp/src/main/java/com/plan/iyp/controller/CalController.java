@@ -20,6 +20,7 @@ import com.plan.iyp.dto.response.cal.ResCalInsertDTO;
 import com.plan.iyp.dto.response.cal.ResCalListDTO;
 import com.plan.iyp.dto.response.cal.ResCalOneDTO;
 import com.plan.iyp.entity.Member;
+import com.plan.iyp.entity.Schedule;
 import com.plan.iyp.service.CalService;
 
 import lombok.RequiredArgsConstructor;
@@ -57,7 +58,8 @@ public class CalController {
 	@PatchMapping("/update")
 	public ResponseEntity<ResCalInsertDTO> update(
 			@RequestBody CalUpdateDTO updateDTO, @AuthenticationPrincipal Member member){
-		ResCalInsertDTO resDTO = calService.update(updateDTO);
+		Schedule sche = calService.update(updateDTO);
+		ResCalInsertDTO resDTO = ResCalInsertDTO.fromEntity(sche);
 		return ResponseEntity.status(HttpStatus.OK).body(resDTO);
 	}
 	

@@ -10,6 +10,7 @@ import Weekly from './pages/front/calendar/Weekly';
 import NotFound from './pages/commons/NotFound';
 import { HelmetProvider } from 'react-helmet-async';
 import Settings from './pages/front/commons/Settings';
+import UserEditContainer from './containers/settings/UserEditContainer';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
             <Route path="/sign-in" element={<Login />} />
             <Route path="/join" element={<Join />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/settings/edit" element={<UserEditContainer />} />
             <Route path="/monthly" element={<Monthly />} />
             <Route path="/weekly" element={<Weekly />} />
           </Route>

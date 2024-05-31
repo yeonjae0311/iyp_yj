@@ -1,12 +1,14 @@
-import { BigButton } from '../../../components/commons/ButtonStyle';
+import { Helmet } from 'react-helmet-async';
+import SettingsContaitner from '../../../containers/settings/SettingsContainer';
 
 const Settings = () => {
-  const update = () => {};
-
   return (
-    <div>
-      <BigButton onClick={update}>회원정보 수정</BigButton>
-    </div>
+    <>
+      <Helmet>
+        <title>I'm Your Planner!</title>
+      </Helmet>
+      <SettingsContaitner />
+    </>
   );
 };
 

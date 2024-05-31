@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { DivBox } from '../commons/BoxStyle';
+import { useEffect, useState } from 'react';
+import { format } from 'date-fns';
 
-const CalBodyW = () => {
+const CalBodyW = ({ toDo, currentMonth, updateModal }) => {
   const DivBoxW = styled(DivBox)`
     width: 150px;
     height: 450px;
@@ -23,27 +25,11 @@ const CalBodyW = () => {
     }
   `;
 
-  const todos = [
-    { contents: 'PM 1:20 치과예약', id: 1 },
-    { contents: '', id: 2 },
-    { contents: '', id: 3 },
-    { contents: '', id: 4 },
-    { contents: '', id: 5 },
-    { contents: '', id: 6 },
-    { contents: '', id: 7 },
-  ];
-
-  const renderTodos = todos.map((todos) => {
-    return (
-      <DivBoxW className={todos.id} key={todos.id}>
-        <span>{todos.contents}</span>
-      </DivBoxW>
-    );
-  });
-
   return (
     <div className="body" key="1">
-      {renderTodos}
+      <DivBoxW>
+        <span>test</span>
+      </DivBoxW>
     </div>
   );
 };

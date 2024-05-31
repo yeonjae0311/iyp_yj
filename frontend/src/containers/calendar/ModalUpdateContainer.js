@@ -56,7 +56,6 @@ const ModalUpdateContainer = ({
     const data = { sidx: scheId };
     apiDeleteSchedule(data)
       .then(() => {
-        console.log(userInfo.u_idx);
         alert('일정이 삭제되었습니다.');
         window.location.href = '/monthly';
       })

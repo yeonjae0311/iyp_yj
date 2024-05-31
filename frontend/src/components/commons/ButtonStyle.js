@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import colorNames from '../../styles/colors';
 import sizeNames from '../../styles/sizes';
 
-const { big } = sizeNames;
+const { big, medium } = sizeNames;
 const { black, white } = colorNames;
 
 export const BigButton = styled.button`
@@ -17,6 +17,37 @@ export const BigButton = styled.button`
 
   & + & {
     margin-top: 30px;
+  }
+`;
+
+export const BigText = styled.button`
+  background: ${({ color }) => (color ? colorNames[color] : white)};
+  font-size: ${({ size }) => (size ? sizeNames[size] : big)};
+  width: ${({ width }) => width || '100%'};
+  height: ${({ height }) => height || '60px'};
+  color: ${({ fcolor }) => fcolor || black};
+  border: 0px;
+  cursor: pointer;
+  font-weight: bold;
+
+  & + & {
+    margin-top: 30px;
+  }
+`;
+
+export const SmallText = styled.button`
+  background: ${({ color }) => (color ? colorNames[color] : white)};
+  font-size: ${({ size }) => (size ? sizeNames[size] : medium)};
+  width: ${({ width }) => width || '70%'};
+  height: ${({ height }) => height || '40px'};
+  color: ${({ fcolor }) => fcolor || black};
+  border: 0px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: left;
+
+  & + & {
+    margin-top: 10px;
   }
 `;
 
